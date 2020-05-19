@@ -7,7 +7,6 @@ services:
     image: caddy
     volumes:
       - caddy_data:/data
-      - ./index.html:/usr/share/caddy/index.html
       - caddy_config:/config
     ports:
       - 80:80
