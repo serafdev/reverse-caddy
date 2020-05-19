@@ -1,0 +1,18 @@
+version: '3'
+volumes:
+  caddy_data:
+  caddy_config:
+services:
+  caddy:
+    image: caddy
+    volumes:
+      - caddy_data:/data
+      - ./index.html:/usr/share/caddy/index.html
+      - caddy_config:/config
+    ports:
+      - 80:80
+      - 443:443
+    command: caddy reverse-proxy --from localhost --to backend:8081 
+  backend:
+    build:
+      context: .
